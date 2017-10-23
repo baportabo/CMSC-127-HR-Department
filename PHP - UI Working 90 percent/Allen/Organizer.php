@@ -34,9 +34,9 @@ if(file_exists($fnc)){
 	require($fnc);
 	if(isset($_GET["search"])){//for search bar case
 		$limit = 10; //default
-		if(isset($_GET["limit"])){$limit=filter_var($_GET["limit"],FILTER_SANITIZE_NUMBER_INT);if($limit==""){$limit=0;}}
+		if(isset($_GET["limit"])){$limit=filter_var($_GET["limit"],FILTER_SANITIZE_NUMBER_INT);if($limit==""){$limit=0;}if($limit>30){$limit=30;}}
 		$keyword = filter_var($_GET["search"],FILTER_SANITIZE_SPECIAL_CHARS);
-		$sql = "SELECT * FROM organizer WHERE org_name LIKE '%".$keyword."%' ORDER BY org_name";
+		$sql = "SELECT * FROM organizer WHERE org_name LIKE '%".$keyword."%' OR rep_name LIKE '%".$keyword."%' ORDER BY org_name";
 		$query=mysqli_query($con,$sql);
 		
 		if(mysqli_num_rows($query)>0&&mysqli_num_rows($query)<=$limit){
@@ -225,7 +225,7 @@ function search($con){
 					
 					<div class="col-sm-6" style="float:right;" >
 						<div id="dataTables-example_filter" class="dataTables_filter" style="width:100%;" >
-							Search:<input id="search_bar_orgs" onkeyup="showResult(this.value)" style="width:70%;margin-left:10px;" class="form-control input-sm" placeholder="Type the organization name here" aria-controls="dataTables-example" type="search" />
+							Search:<input id="search_bar_orgs" onkeyup="showResult(this.value)" style="width:70%;margin-left:10px;" class="form-control input-sm" placeholder="Type the organization name or representative name here" aria-controls="dataTables-example" type="search" />
 						</div>
 					</div>
 					
@@ -352,6 +352,7 @@ function search($con){
 					<td colspan="6" style="text-align:center;" > 
 						This means that there are a lot of entries in the database (more than 10 entries)<br />
 						We suggest that you	start typing the name of the organization you are looking for in the search bar to narrow the results<br />
+						You can also try searching for the name of the representative of the organization that you are looking for<br />
 						You also need to make sure that your browser enable&apos;s <strong><em>Javascript</em></strong> for the search bar to work
 					</td>
 					</tr>';
