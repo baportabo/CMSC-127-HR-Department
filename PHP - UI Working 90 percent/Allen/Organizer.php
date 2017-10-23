@@ -119,40 +119,55 @@ if(file_exists($fnc)){
 		}
 		
 		if(strlen($rep_contact)!=11){$val_contact=false;}
-		
-		if(!$val_email){$rep_email="None";}
-		if(!$val_contact){$rep_contact="None";}
-		
+			
 		$sql="SELECT * FROM organizer WHERE org_name='".$org_name."'";
 		$query=mysqli_query($con,$sql);
-		if(mysqli_num_rows($query)==0){
-			//adding record
-			$sql = "INSERT INTO organizer (org_id, org_name, rep_name, rep_contact, rep_email, rep_address) VALUES (NULL, '".$org_name."', '".$rep_name."', '".$rep_contact."', '".$rep_email."', '".$rep_addr."')";
-			$query=mysqli_query($con,$sql);
-		
-			$sql = "SELECT * FROM organizer WHERE org_name='".$org_name."' AND rep_name='".$rep_name."' AND rep_contact='".$rep_contact."' AND rep_email='".$rep_email."' AND rep_address='".$rep_addr."'";
-			$query=mysqli_query($con,$sql);
+		if(mysqli_num_rows($query)==0){//this means this new org is not already in the db
 
-			if(mysqli_num_rows($query)>0){
+			if($val_email&&$val_contact){//valid email and contact
+			
+				//adding record
+				$sql = "INSERT INTO organizer (org_id, org_name, rep_name, rep_contact, rep_email, rep_address) VALUES (NULL, '".$org_name."', '".$rep_name."', '".$rep_contact."', '".$rep_email."', '".$rep_addr."')";
+				$query=mysqli_query($con,$sql);
+			
+				//verifying if the record is added
+				$sql = "SELECT * FROM organizer WHERE org_name='".$org_name."' AND rep_name='".$rep_name."' AND rep_contact='".$rep_contact."' AND rep_email='".$rep_email."' AND rep_address='".$rep_addr."'";
+				$query=mysqli_query($con,$sql);
+				
+				if(mysqli_num_rows($query)>0){
 
-				$msg = '	
-						The organizer&s record with this information is added to the database : <br />
-						Organization Name : '.$org_name.'<br />
-						Representative&apos;s Name : '.$rep_name.'<br />
-						Representative&apos;s Contact Number : '.$rep_contact.'<br />
-						Representative&apos;s Email Address : '.$rep_email.'<br />
-						Representative&apos;s Adress :'.$rep_addr.'
-					';
-					
-				$content = add($con,null,null,null,null,null,$msg,false);
+					$msg = '	
+							The organizer&s record with this information is added to the database : <br />
+							Organization Name : '.$org_name.'<br />
+							Representative&apos;s Name : '.$rep_name.'<br />
+							Representative&apos;s Contact Number : '.$rep_contact.'<br />
+							Representative&apos;s Email Address : '.$rep_email.'<br />
+							Representative&apos;s Adress :'.$rep_addr.'
+						';
+						
+					$content = add($con,null,null,null,null,null,$msg,false);
+				}else{
+					$msg = '	
+							The organizer&apos;s record you entered contains valid input but cannot be added for some reason<br />
+							Contact your system administrator to fix this.
+						';
+						
+					$content = add($con,$org_name,$rep_name,$rep_contact,$rep_email,$rep_addr,$msg,true);
+				}
 			}else{
 				$msg = '	
-						The organizer&apos;s record you entered contains valid input but cannot be added for some reason<br />
-						Contact your system administrator to fix this.
-					';
-					
-				$content = add($con,$org_name,$rep_name,$rep_contact,$rep_email,$rep_addr,$msg,true);
+							The organizer&apos;s record you entered contains invalid input<br />
+							This might be : 
+							<ul>
+								<li>Representative&apos;s contact number</li>
+								<li>Representative&apos;s email address</li>
+							</ul>
+							Please check your input then try again
+						';
+						
+					$content = add($con,$org_name,$rep_name,$rep_contact,$rep_email,$rep_addr,$msg,true);
 			}
+			
 		}else{
 				$msg = '
 						The organization with the name &apos;'.$org_name.'&apos; already exist <br />

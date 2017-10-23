@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2017 at 03:06 PM
+-- Generation Time: Oct 23, 2017 at 03:52 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.4
 
@@ -102,12 +102,12 @@ INSERT INTO `organizer` (`org_id`, `org_name`, `rep_contact`, `rep_name`, `rep_e
 (13, 'Sagip ggf Org', '09099730701', 'SNO', 'qweqw@qwemail.com', 'Baguio City'),
 (14, 'Sagip ggg Org', '09099730701', 'SNO', 'qweqw@qwemail.com', 'Baguio City'),
 (15, 'Sagip ggghhe Org', '09099730701', 'SNO', 'qweqw@qwemail.com', 'Baguio City'),
-(16, '1113', '1321', '1312', 'addd@ada.asda', '12321'),
 (17, 'GG EZ ORgs', '09099730701', 'qwewq', 'asdsa@gmail.com', 'Cab Hill, BC'),
 (18, 'qeqweqwe', '09099730701', 'qwewq', 'asdsa@gmail.com', 'Cab Hill, BC'),
 (19, 'Felix Best Girl', '09099730701', 'qwewq', 'asdsa@gmail.com', 'Cab Hill, BC'),
 (20, 'Emilia Best Gurl', '09099730701', 'qwewq', 'asdsa@gmail.com', 'Cab Hill, BC'),
 (21, 'REM NOT BEST GURL', '09099730701', 'qwewq', 'asdsa@gmail.com', 'Cab Hill, BC'),
+(29, 'hhasd', '09099730702', 'None', 'ggez@dasd.com', 'None'),
 (27, 'Elmo&#39;s World', 'None', 'None', 'None', 'None'),
 (25, 'Toxxic si Tata', 'None', 'Tatabells', 'du30@gmali.com', 'None');
 
@@ -222,7 +222,7 @@ ALTER TABLE `attendance_record`
 -- AUTO_INCREMENT for table `organizer`
 --
 ALTER TABLE `organizer`
-  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `staff`
 --
