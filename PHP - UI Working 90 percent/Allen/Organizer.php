@@ -216,6 +216,7 @@ if(file_exists($fnc)){
 		echo "</div>"; //this is to end the div wrapper in nav.php
 		
 		require($foot);
+		mysqli_close($con);
 	}
 }
 else{die("Error : The website is missing a critical file, contact system administrator");}
@@ -226,7 +227,7 @@ function search($con){
 				
 					<div class="col-sm-6">
 						<div onmouseup="showResult(document.getElementById('."'search_bar_orgs'".').value)" class="dataTables_length" id="dataTables-example_length">
-							Maximum Records to Show : 
+							Show entries : 
 								<select id="limit_org_records" style="width:15%;" name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
 									<option value="1">1</option>
 									<option value="5">5</option>
