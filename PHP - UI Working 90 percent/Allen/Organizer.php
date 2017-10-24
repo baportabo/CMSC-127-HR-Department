@@ -227,7 +227,7 @@ function search($con){
 				
 					<div class="col-sm-6">
 						<div onmouseup="showResult(document.getElementById('."'search_bar_orgs'".').value)" class="dataTables_length" id="dataTables-example_length">
-							Show entries : 
+							<label style="width:10%margin-right:10px;" >Show entries : </label>
 								<select id="limit_org_records" style="width:15%;" name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
 									<option value="1">1</option>
 									<option value="5">5</option>
@@ -239,9 +239,10 @@ function search($con){
 					</div>
 					
 					
-					<div class="col-sm-6" style="float:right;" >
+					<div class="col-sm-6"  >
 						<div id="dataTables-example_filter" class="dataTables_filter" style="width:100%;" >
-							Search:<input id="search_bar_orgs" onkeyup="showResult(this.value)" style="width:70%;margin-left:10px;" class="form-control input-sm" placeholder="Type the organization name or representative name here" aria-controls="dataTables-example" type="search" />
+							<label style="width:10%margin-right:20px;" >Search:</label>
+							<input id="search_bar_orgs" onkeyup="showResult(this.value)" style="width:85%;" class="form-control input-sm" placeholder="Type the organization name or representative name here" aria-controls="dataTables-example" type="search" />
 						</div>
 					</div>
 					
