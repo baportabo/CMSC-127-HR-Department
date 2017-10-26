@@ -5,3 +5,11 @@ I.e. special cases like if the staff id doesn't exist for the record trying to b
 changed to either bootstrap date pickers or drop down menus before finalization.
 
 The lacking features of Attendance is part of the unfinished 10%.
+
+In summary, this is the remaning work to be done:
+
+1. Attendance Record per staff, stylized as clickable tables that are accessible by the attendance checker.
+2. Error checking features: Existence of staff id, start date/end date overlapping for records that are consecutive 
+    (ex. start date/end date consistency between the Attendance Record of a particular staff for the year 2017,2018,...)
+3. Date fields should be bootstrap datepickers or drop down menus.
+
