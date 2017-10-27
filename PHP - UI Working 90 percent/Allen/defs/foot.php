@@ -8,6 +8,16 @@
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script>
     <script src="../dist/js/sb-admin-2.js"></script>
+	
+	<!--
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>-->
+	
 </body>
 
 </html>

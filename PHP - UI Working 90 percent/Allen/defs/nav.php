@@ -5,6 +5,7 @@ $record = "";
 if($page_val){
 	$page = filter_var($_POST["page"],FILTER_SANITIZE_SPECIAL_CHARS);
 	if($page==="Organizer"){$record=$page."s";}//OC
+	else{$record=$page;}//for others
 }
 // $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
 
@@ -21,7 +22,7 @@ $links = array("Organizer","Activities","Personnel","Attendance");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Luke's Foundation HR Department</a>
+                <a class="navbar-brand" href="index.php">Luke's Foundation HR Department</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
