@@ -43,7 +43,6 @@
 	$start = $_POST['start'];
 	$end = $_POST['end'];
 	
-
 	$sql = "INSERT INTO attendance_record (staff_id,year,remarks,approved_by,start,end) VALUES ('$staff_id','$year','$remarks','$approved_by','$start','$end')";
 	
 	
@@ -56,7 +55,7 @@
 	}
 	//initialize values into attendance counter 
 	
-	$sql = "INSERT INTO attendance_counter (staff_id,year,sick_leave_balance,vac_leave_balance,vac_leave_ctr,maternity_leave,sick_leave_ctr,undertime,offset,leave_start,leave_end) VALUES ('$staff_id','$year',15,15,0,0,0,0,0,'0000-00-00','0000-00-00')";
+	$sql = "INSERT INTO attendance_counter (staff_id,year,sick_leave_balance,vac_leave_balance,vac_leave_ctr,sick_leave_ctr,undertime,offset,leave_start,leave_end) VALUES ('$staff_id','$year',15,15,0,0,0,0,'0000-00-00','0000-00-00')";
 	
 	if (!mysqli_query($con,$sql)){
 		echo 'not inserted';
@@ -66,8 +65,5 @@
 			</div>';
 	}
 	
-	header("refresh:2;url=attendance_summary.php");
-
-
-
+	header("refresh:2;url=Attendance.php");
 ?>

@@ -35,16 +35,32 @@
 	if (!mysqli_select_db($con,'lukedb')){
 		echo 'Database not selected';
 	}
-		$staff_id=$_POST['staff_id'];
+	$staff_id=$_POST['staff_id'];
+	$year = $_POST['year'];
 	$remarks = htmlspecialchars($_POST['remarks']);
 	$approved_by = $_POST['approved_by'];
 	$start = $_POST['start'];
 	$end = $_POST['end'];
 	
-	$sql = "UPDATE attendance_record SET remarks='$remarks', approved_by='$approved_by', start='$start', end='$end' WHERE staff_id='$staff_id'";
+	$sick_leave_bal = $_POST['sick_leave_balance'];
+	$vac_leave_bal = $_POST['vac_leave_balance'];
+	$undertime = $_POST['undertime'];
+	$offset=$_POST['offset'];
+	
+	$sql = "UPDATE attendance_record SET remarks='$remarks', approved_by='$approved_by', start='$start', end='$end' WHERE staff_id='$staff_id' && year='$year'";
 	
 	if (!mysqli_query($con,$sql)){
-		echo 'not inserted';
+		echo 'not updated 1';
+	}else{
+		echo '<div class="alert alert-success">
+			<strong>Success!</strong> Entry successfully updated from Attendance Record.
+			</div>';
+	}
+	
+	$sql = "UPDATE attendance_counter SET sick_leave_balance='$sick_leave_bal', vac_leave_balance='$vac_leave_bal', undertime='$undertime', offset='$offset' WHERE staff_id='$staff_id' && year='$year'";
+	
+	if (!mysqli_query($con,$sql)){
+		echo 'not updated 2';
 	}else{
 		echo '<div class="alert alert-success">
 			<strong>Success!</strong> Entry successfully updated from Attendance Record.
@@ -52,7 +68,4 @@
 	}
 	
 	header("refresh:2;url=attendance.php");
-
-
-
 ?>

@@ -146,6 +146,7 @@
                                         <th>Middle Name</th>
                                         <th>Contact Number</th>
                                         <th>Staff Type</th>
+										<th>Address</th>
                                         <th>Email</th>
 										<th>Action</th>
                                     </tr>
@@ -159,6 +160,7 @@
 										echo "<td>".$row['middle_name']."</td>"; 
 										echo "<td>". $row['contact_number']."</td>";  
 										echo "<td>".$row['staff_type']."</td>";  
+										echo "<td>". $row['address']."</td>"; 
 										echo "<td>".$row['email_address']."</td>";  
 										echo '<td>
 										

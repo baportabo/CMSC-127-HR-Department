@@ -113,10 +113,7 @@
                         <li>
                             <a href="Add Attendance.php"><i class="fa fa-plus-circle fa-fw"></i> Add Attendance</a>
                         </li>
-						
-						<li>
-                            <a href="attendance_summary.php"><i class="fa fa-file-excel-o"></i> Attendance Summary</a>
-                        </li>
+
 						
 						<li>
                             <a href="Currently_On_Leave.php"><i class="fa fa-user"></i> List of Staff Currently On Leave</a>
@@ -150,6 +147,10 @@
                                         <th>Approved by</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
+										<th>Sick Leave Balance</th>
+										<th>Vacation Leave Balance</th>
+										<th>Undertime</th>
+										<th>Offset</th>
 										<th>Action</th>
                                     </tr>
                                 </thead>
@@ -159,6 +160,10 @@
 									$result2 = mysqli_query($con,$query2);
 									$row2=mysqli_fetch_row($result2);
 									
+									$query3 = "SELECT sick_leave_balance,vac_leave_balance,undertime,offset FROM attendance_counter where staff_id = '$row[staff_id]' && year = '$row[year]'";
+									$result3 = mysqli_query($con,$query3);
+									$row3 = mysqli_fetch_row($result3);
+									
                                     echo "<tr class='odd gradeX'>";
 									echo "<td>".$row2['0'].', '.$row2['1'].' '.$row2['2']."</td>";
 									echo "<td>". $row['year']."</td>";  
@@ -166,6 +171,10 @@
 									echo "<td>".$row['approved_by']."</td>";  
 									echo "<td>".$row['start']."</td>"; 
 									echo "<td>".$row['end']."</td>"; 
+									echo "<td>".$row3['0']."</td>"; //sick_leave_balance
+									echo "<td>".$row3['1']."</td>"; //vac_leave_balance
+									echo "<td>".$row3['2']."</td>"; //undertime
+									echo "<td>".$row3['3']."</td>"; //offset
 									echo '<td>';
 									if($row2['3']=="Official Staff"){
 										echo '<form method="POST" action="Leave.php" >
@@ -175,6 +184,10 @@
 											<input class="hide" name="approved_by" type="text" value="'.$row["approved_by"].'" />
 											<input class="hide" name="start" type="text" value="'.$row["start"].'" />
 											<input class="hide" name="end" type="text" value="'.$row["end"].'" />
+											<input class="hide" name="sick_leave_balance" type="text" value="'.$row3["0"].'" />
+											<input class="hide" name="vac_leave_balance" type="text" value="'.$row3["1"].'" />
+											<input class="hide" name="undertime" type="text" value="'.$row3["2"].'" />
+											<input class="hide" name="offset type="text" value="'.$row3["3"].'" />
 											
 											<input id="org_btn" class="btn btn-default" type="submit" value="Submit Leave" style="background-color:#80d4ff" />
 										</form> ';
@@ -193,6 +206,10 @@
 											<input class="hide" name="approved_by" type="text" value="'.$row["approved_by"].'" />
 											<input class="hide" name="start" type="text" value="'.$row["start"].'" />
 											<input class="hide" name="end" type="text" value="'.$row["end"].'" />
+											<input class="hide" name="sick_leave_balance" type="text" value="'.$row3["0"].'" />
+											<input class="hide" name="vac_leave_balance" type="text" value="'.$row3["1"].'" />
+											<input class="hide" name="undertime" type="text" value="'.$row3["2"].'" />
+											<input class="hide" name="offset type="text" value="'.$row3["3"].'" />
 											
 											<input id="org_btn" class="btn btn-default" type="submit" value="Update" style="background-color: #86f597" />
 										</form>
@@ -208,6 +225,10 @@
 											<input class="hide" name="approved_by" type="text" value="'.$row["approved_by"].'" />
 											<input class="hide" name="start" type="text" value="'.$row["start"].'" />
 											<input class="hide" name="end" type="text" value="'.$row["end"].'" />
+											<input class="hide" name="sick_leave_balance" type="text" value="'.$row3["0"].'" />
+											<input class="hide" name="vac_leave_balance" type="text" value="'.$row3["1"].'" />
+											<input class="hide" name="undertime" type="text" value="'.$row3["2"].'" />
+											<input class="hide" name="offset type="text" value="'.$row3["3"].'" />
 											
 											<input id="org_btn" class="btn btn-default" type="submit" value="Delete" style="background-color: #f5868b" />
 										</form>

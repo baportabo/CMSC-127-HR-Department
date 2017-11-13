@@ -24,9 +24,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,11 +37,8 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -55,7 +50,6 @@
                 </button>
                 <a class="navbar-brand" href="index.php">Luke's Foundation HR Department</a>
             </div>
-
             <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
                     <a  href="index.php">
@@ -97,7 +91,6 @@
                     </ul>
                 </li>
             </ul>
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -121,19 +114,13 @@
                         </li>
 						
 						<li>
-                            <a href="attendance_summary.php"><i class="fa fa-file-excel-o"></i> Attendance Summary</a>
-                        </li>
-						
-						<li>
                             <a href="Currently_On_Leave.php"><i class="fa fa-user"></i> List of Staff Currently On Leave</a>
                         </li>
                     </ul>
                 </div>
             </div>
-
         </nav>
 		
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -210,13 +197,11 @@
                 </div>
             </div>
         </div>
-
     </div>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
     <script src="../dist/js/sb-admin-2.js"></script>
-
 </body>
 <?php mysqli_close($con);?>
 </html>

@@ -56,8 +56,5 @@
 			</div>';
 	}
 	
-	header("refresh:2;url=attendance_summary.php");
-
-
-
+	header("refresh:2;url=Attendance.php");
 ?>
