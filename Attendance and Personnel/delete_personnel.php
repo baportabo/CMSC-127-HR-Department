@@ -37,10 +37,20 @@
 	}
 	
 	$sql = "DELETE FROM staff WHERE staff_id = '$_POST[staff_id]'";
+	$sql1 = "DELETE FROM attendance_record WHERE staff_id = '$_POST[staff_id]'";
+	$sql2 = "DELETE FROM attendance_counter WHERE staff_id = '$_POST[staff_id]'";
+	
+	
 	
 	if (!mysqli_query($con,$sql)){
-		echo 'not inserted';
+		echo 'not deleted';
 	}else{
+		if (!mysqli_query($con,$sql1)){
+			echo 'no attendance_record deleted--staff deletion is successful though';
+		}
+		if (!mysqli_query($con,$sql2)){
+			echo 'no attendance_counter deleted--staff deletion is successful though';
+		}
 		echo '<div class="alert alert-success">
 			<strong>Success!</strong> Entry successfully deleted from Personnel.
 			</div>';

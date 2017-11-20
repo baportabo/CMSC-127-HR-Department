@@ -90,7 +90,7 @@
 	
 	if ($bool==1){
 		if (!mysqli_query($con,$sql)){
-			echo 'leave not submitted';
+			echo 'Leave not submitted';
 		}else{
 			echo '<div class="alert alert-success">
 				<strong>Success!</strong> Leave form successfully submitted.
@@ -98,24 +98,33 @@
 		}//end if
 	}
 	
-	header("refresh:20;url=Currently_On_Leave.php"); 
+	header("refresh:5;url=Currently_On_Leave.php"); 
 	
 	function check_date_validity($sick_leave_bal,$vac_leave_bal,$startdate,$enddate,$leave_end2){
-		//echo 'sick_leave_bal:'.$sick_leave_bal.'<br>'.'vac_leave_bal:'.$vac_leave_bal.'<br>'.'startdate:'.$startdate.'<br>'.'endate:'.$enddate.'<br>'.'leave_end2:'.$leave_end2.'<br>';
+		
 		$today = date("Y/m/d");
+		
 		if ($vac_leave_bal < 0){
 			echo '<div class="alert alert-danger fade in">
-				<strong>Whoops!</strong> It looks like this person has exceeded the maximum allowable vacation leave days. Or the dates you have entered deduct to a value that exceeds the maximum allowable vacation days.
+				<strong>Whoops!</strong> It looks like this person has exceeded the maximum allowable vacation leave days or the dates you have entered deduct to a value that exceeds the maximum allowable vacation days.
 				</div>';
 			return 0;
 		}else if ($sick_leave_bal <0){
 			echo '<div class="alert alert-danger fade in">
-				<strong>Whoops!</strong> It looks like this person has exceeded the maximum allowable sick leave days. Or the dates you have entered deduct to a value that exceeds the maximum allowable sick days.
+				<strong>Whoops!</strong> It looks like this person has exceeded the maximum allowable sick leave days or the dates you have entered deduct to a value that exceeds the maximum allowable sick days.
 				</div>';
 			return 0;
-		}else if ((strtotime($startdate)-strtotime($leave_end2) < 0) || ((strtotime($enddate)-strtotime($startdate)) <= 0) || ((strtotime($startdate)-strtotime($today)) < 0) || ((strtotime($enddate)-strtotime($today)) <= 0)){
+		}else if ((strtotime($startdate)-strtotime($leave_end2) < 0) || (strtotime($enddate)-strtotime($startdate) < 0) || (strtotime($enddate)-strtotime($leave_end2) < 0) ){
+			
+			echo "startdate: ".$startdate."<br>";
+			echo "enddate: ".$enddate."<br>";
+			echo "leave_end2: ".$leave_end2."<br>";
+			echo "startdate - leave_end2: ".strtotime($startdate)-strtotime($leave_end2)."<br>" ;
+			echo "enddate - startdate: ".strtotime($enddate)-strtotime($startdate)."<br>" ;
+			echo "enddate - leave_end2: ".strtotime($enddate)-strtotime($leave_end2)."<br>" ;
+			
 			echo '<div class="alert alert-danger fade in">
-				<strong>Whoops!</strong> Invalid start/end date. Either the end date precedes the start date or this person is still on leave.
+				<strong>Whoops!</strong> Invalid start/end date. Possible reasons may be: the end date precedes the start date or the start date and end date falls within the range of the last leave this person took.
 				</div>';
 			return 0;
 		}

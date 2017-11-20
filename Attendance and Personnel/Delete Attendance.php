@@ -122,9 +122,7 @@
                             <a href="Add Attendance.php"><i class="fa fa-plus-circle fa-fw"></i> Add Attendance</a>
                         </li>
 						
-						<li>
-                            <a href="attendance_summary.php"><i class="fa fa-file-excel-o"></i> Attendance Summary</a>
-                        </li>
+						
 						
 						<li>
                             <a href="Currently_On_Leave.php"><i class="fa fa-user"></i> List of Staff Currently On Leave</a>

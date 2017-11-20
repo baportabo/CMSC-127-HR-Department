@@ -102,6 +102,26 @@
                         </li>
                     </ul>
                 </div>
+				<br>
+				<div class="card" style="width: 20rem;">
+					
+					  <div class="card-block">
+						<h4 class="card-title">Reminders:</h4>
+						<ul>
+							<li>
+								<p class="card-text">
+									Ensure that the start date precedes the end date.
+								</p>
+							</li>
+							
+							<li>
+								<p class="card-text">
+									Ensure that an attendance record with the same year doesn't exist for the employee in question.
+								</p>
+							</li>
+						</ul>
+					  </div>
+					</div>
             </div>
         </nav>
 
@@ -164,11 +184,11 @@
                                         <div class="form-group">
                                             <label>Start</label>
                                             
-											<input type="date"  name = "start" id = "start">
+											<input type="date"  name = "start" id = "start" max="2037-12-30" required>
                                         </div>
                                         <div class="form-group">
                                             <label>End</label>
-											<input type="date"  name = "end" id = "end">
+											<input type="date"  name = "end" id = "end" max="2037-12-30" required>
                                         </div>
 										
 										

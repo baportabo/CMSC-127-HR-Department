@@ -100,7 +100,28 @@
                         
                     </ul>
                 </div>
+				<br>
+				<div class="card" style="width: 20rem;">
+					
+					  <div class="card-block">
+						<h4 class="card-title">Reminders:</h4>
+						<ul>
+							<li>
+								<p class="card-text">
+									Make sure that the start date precedes the end date.
+								</p>
+							</li>
+							
+							<li>
+								<p class="card-text">
+									The system will not accept a date range that will fall WITHIN or BEFORE the date range of the last leave this particular personnel applied for.
+								</p>
+							</li>
+						</ul>
+					  </div>
+					</div>
             </div>
+			
         </nav>
 
         <div id="page-wrapper">
@@ -177,13 +198,13 @@
 											<div class="form-group">
 												<label>Start of Leave Period</label>
 												
-												<input type="date"  name = "start" id = "start" required> 
+												<input type="date"  name = "start" id = "start" max="2037-12-30" required> 
 											</div>
 											
 											<div class="form-group">
 												<label>End of Leave Period</label>
 												
-												<input type="date"  name = "end" id = "end" required> 
+												<input type="date"  name = "end" id = "end" max="2037-12-30" required> 
 											</div>
                                                 
                                         </div>

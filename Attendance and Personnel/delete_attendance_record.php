@@ -52,7 +52,7 @@
 		echo 'not inserted';
 	}else{
 		echo '<div class="alert alert-success">
-			<strong>Success!</strong> Entry successfully deleted from Attendance Record.
+			<strong>Success!</strong> Entry successfully deleted from Attendance Counter.
 			</div>';
 	}
 	

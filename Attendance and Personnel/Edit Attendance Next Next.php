@@ -24,9 +24,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,11 +37,8 @@
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -55,7 +50,6 @@
                 </button>
                 <a class="navbar-brand" href="index.php">Luke's Foundation HR Department</a>
             </div>
-
             <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
                     <a  href="index.php">
@@ -97,7 +91,6 @@
                     </ul>
                 </li>
             </ul>
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -121,10 +114,6 @@
                         </li>
 						
 						<li>
-                            <a href="attendance_summary.php"><i class="fa fa-file-excel-o"></i> Attendance Summary</a>
-                        </li>
-						
-						<li>
                             <a href="Currently_On_Leave.php"><i class="fa fa-user"></i> List of Staff Currently On Leave</a>
                         </li>
 						
@@ -132,10 +121,8 @@
                     </ul>
                 </div>
             </div>
-
         </nav>
 		
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -166,12 +153,29 @@
 											$query = "SELECT * FROM attendance_record WHERE year = '$_POST[year]' && staff_id='$_POST[staff_id]'";
 											$result = mysqli_query($con,$query);
 											$row=mysqli_fetch_row($result);
+											$year = $_POST['year'];
+											
+											$query="SELECT sick_leave_balance,vac_leave_balance,undertime,offset FROM attendance_counter WHERE year = '$_POST[year]' && staff_id='$_POST[staff_id]'";
+											$result2 = mysqli_query($con,$query);
+											$row2=mysqli_fetch_row($result2);
 											
 											$row1[0]=$_POST['staff_id'];
+											
+											
+											$q = "SELECT * FROM staff where staff_id='$_POST[staff_id]'";
+											$r = mysqli_query($con,$q);
+											$rw = mysqli_fetch_row($r);
+											
 											
 											$content="";
 											$content=$content.'
 															<input class="hide" name="staff_id" type="text" value="'.$row["1"].'" />
+															
+															<div class="form-group">
+																<label>Name</label>
+																<input class="form-control"value="'.$rw['1'].', '.$rw['2'].'" name="last_name" readonly>
+															</div>
+															
 															
 															<div class="form-group">
 															<label>Remarks</label>
@@ -191,6 +195,24 @@
 																<input class="form-control" placeholder="'.$row['6'].'" value="'.$row['6'].'" name="end" type = "date">
 															</div>
 															
+															
+																<input class="hidden" placeholder="'.$row2['0'].'" value="'.$row2['0'].'" name="sick_leave_balance">
+															
+															
+															
+																<input class="hidden" placeholder="'.$row2['1'].'" value="'.$row2['1'].'" name="vac_leave_balance">
+															
+															
+															<div class="form-group">
+																<label>Undertime</label>
+																<input class="form-control" placeholder="'.$row2['2'].'" value="'.$row2['2'].'" name="undertime">
+															</div>
+															
+															<div class="form-group">
+																<label>Offset</label>
+																<input class="form-control" placeholder="'.$row2['3'].'" value="'.$row2['3'].'" name="offset">
+															</div>
+															
 														';
 												
 											
@@ -201,6 +223,7 @@
                                                <?php
 												echo $content;
 												echo '<input class="hide" name="staff_id" value="'.$row1["0"].'" />';
+												echo '<input class="hide" name="year" type="text" value="'.$year.'" />';
 											   ?>
                                                 
                                         </div>
@@ -217,13 +240,11 @@
                 </div>
             </div>
         </div>
-
     </div>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>
     <script src="../dist/js/sb-admin-2.js"></script>
-
 </body>
 <?php mysqli_close($con);?>
 </html>

@@ -43,29 +43,40 @@
 	$end = $_POST['end'];
 	
 	$sick_leave_bal = $_POST['sick_leave_balance'];
-	$vac_leave_bal = $_POST['vac_leave_balance'];
 	$undertime = $_POST['undertime'];
 	$offset=$_POST['offset'];
+	$vac_leave_bal = $_POST['vac_leave_balance']+$offset-$undertime;
 	
-	$sql = "UPDATE attendance_record SET remarks='$remarks', approved_by='$approved_by', start='$start', end='$end' WHERE staff_id='$staff_id' && year='$year'";
 	
-	if (!mysqli_query($con,$sql)){
-		echo 'not updated 1';
+	$bool=1;
+	
+	//error checking for start and end date
+	if (strtotime($end)-strtotime($start)<0){
+		$bool=0;
 	}else{
-		echo '<div class="alert alert-success">
-			<strong>Success!</strong> Entry successfully updated from Attendance Record.
-			</div>';
+		
+		$sql = "UPDATE attendance_record SET remarks='$remarks', approved_by='$approved_by', start='$start', end='$end' WHERE staff_id='$staff_id' && year='$year'";
+	
+		if (!mysqli_query($con,$sql)){
+			echo 'not updated 1';
+		}
+	
+		$sql = "UPDATE attendance_counter SET sick_leave_balance='$sick_leave_bal', vac_leave_balance='$vac_leave_bal', undertime='$undertime', offset='$offset' WHERE staff_id='$staff_id' && year='$year'";
+	
+		if (!mysqli_query($con,$sql)){
+			echo 'not updated 2';
+		}
 	}
 	
-	$sql = "UPDATE attendance_counter SET sick_leave_balance='$sick_leave_bal', vac_leave_balance='$vac_leave_bal', undertime='$undertime', offset='$offset' WHERE staff_id='$staff_id' && year='$year'";
-	
-	if (!mysqli_query($con,$sql)){
-		echo 'not updated 2';
-	}else{
+	if ($bool==1){
 		echo '<div class="alert alert-success">
-			<strong>Success!</strong> Entry successfully updated from Attendance Record.
+			<strong>Success!</strong> New entry successfully inserted into Attendance Record/Counter.
 			</div>';
+	}else{
+		echo 'Whoops! Something went wrong. Check the start/end date and ensure that a record for the same employee with the input year doesnt already exist.';
 	}
+	
+	
 	
 	header("refresh:2;url=attendance.php");
 ?>

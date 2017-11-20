@@ -109,7 +109,30 @@
                       
                     </ul>
                 </div>
+				<br>
+				<div class="card" style="width: 20rem;">
+					
+					  <div class="card-block">
+						<h4 class="card-title">Reminders:</h4>
+						<ul>
+							<li>
+								<p class="card-text">
+									Only people who are on leave as of today's date will reflect on the first table.
+								</p>
+							</li>
+							
+							<li>
+								<p class="card-text">
+									However, the system permits leaves applied before today's date. This is for cases wherein the staff member opts to apply for leave after the actual leave period. Leave applications that fall under this category will reflect on the second table.
+								</p>
+							</li>
+							
+						</ul>
+					  </div>
+					</div>
             </div>
+			
+			
         </nav>
 		
 							<?php
@@ -127,12 +150,17 @@
 								$query = "SELECT * FROM attendance_counter WHERE leave_start <> '0000-00-00'";
 								$result = mysqli_query($con,$query);
 								
+								$result_2 = mysqli_query($con,$query);
+								
+								
+								
 							?>
 
         <div id="page-wrapper">
+		
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">List of Staff Who Are Currently On Leave</h1>
+                    <h1 class="page-header">List of Staff Who Are Currently On Leave as of <?php echo date("m-d-Y") ?></h1>
                 </div>
             </div>
             <div class="row">
@@ -173,15 +201,66 @@
                                  }?>
                                 </tbody>
                             </table>
-                           
                         </div>
                     </div>
-                </div>
-            </div>
-            </div>
         </div>
 
     </div>
+	
+	<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">List of Latest Leave Applications</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Database
+                        </div>
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+										<th>Name</th>
+                                        <th>Year</th>
+                                        <th>Type of Leave</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+								 <?php while ($row_2 = mysqli_fetch_array($result_2)){
+									$query_2 = "SELECT last_name,middle_name,first_name FROM staff WHERE staff_id = '$row_2[staff_id]'";
+									$result_3 = mysqli_query($con,$query_2);
+									$row_3=mysqli_fetch_row($result_3);
+									
+								
+									
+									$today = date("Y/m/d");
+									$check = strtotime($row_2['leave_end'])-strtotime($today);
+									if ($check < 0){
+										echo "<tr class='odd gradeX'>";
+										echo "<td>".$row_3['0'].', '.$row_3['1'].' '.$row_3['2']."</td>";   
+										echo "<td>". $row_2['year']."</td>";  
+										echo "<td>".$row_2['leave_type']."</td>";  
+										echo "<td>".$row_2['leave_start']."</td>";  
+										echo "<td>".$row_2['leave_end']."</td>";  
+										echo '<td>';
+										echo '</tr>';
+									}//end if
+                                 }?>
+								 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+        </div>
+
+    </div>
+	
+	</div>
+	
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>

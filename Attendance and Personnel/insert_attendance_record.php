@@ -43,27 +43,32 @@
 	$start = $_POST['start'];
 	$end = $_POST['end'];
 	
-	$sql = "INSERT INTO attendance_record (staff_id,year,remarks,approved_by,start,end) VALUES ('$staff_id','$year','$remarks','$approved_by','$start','$end')";
+	$sql1 = "INSERT INTO attendance_record (staff_id,year,remarks,approved_by,start,end) VALUES ('$staff_id','$year','$remarks','$approved_by','$start','$end')";
+	$bool=1;
 	
+	//initialize values into attendance counter 
+	$sql2 = "INSERT INTO attendance_counter (staff_id,year,sick_leave_balance,vac_leave_balance,vac_leave_ctr,sick_leave_ctr,undertime,offset,leave_start,leave_end) VALUES ('$staff_id','$year',15,15,0,0,0,0,'0000-00-00','0000-00-00')";
 	
-	if (!mysqli_query($con,$sql)){
-		echo 'not inserted';
+	if (strtotime($end)-strtotime($start)<0){
+		$bool=0;
 	}else{
+		
+		if (!mysqli_query($con,$sql1)){
+			$bool=0;
+		}
+		if (!mysqli_query($con,$sql2)){
+			$bool=0;
+		}
+	}
+	
+	if ($bool==1){
 		echo '<div class="alert alert-success">
 			<strong>Success!</strong> New entry successfully inserted into Attendance Record.
 			</div>';
-	}
-	//initialize values into attendance counter 
-	
-	$sql = "INSERT INTO attendance_counter (staff_id,year,sick_leave_balance,vac_leave_balance,vac_leave_ctr,sick_leave_ctr,undertime,offset,leave_start,leave_end) VALUES ('$staff_id','$year',15,15,0,0,0,0,'0000-00-00','0000-00-00')";
-	
-	if (!mysqli_query($con,$sql)){
-		echo 'not inserted';
 	}else{
-		echo '<div class="alert alert-success">
-			<strong>Success!</strong> New entry successfully inserted into Attendance Counter. See Attendance Summary.
-			</div>';
+		echo 'Whoops! Something went wrong. Check the start/end date and ensure that a record for the same employee with the input year doesnt already exist.';
 	}
 	
 	header("refresh:2;url=Attendance.php");
+	
 ?>

@@ -121,6 +121,26 @@
                       
                     </ul>
                 </div>
+				<br>
+				<div class="card" style="width: 20rem;">
+					
+					  <div class="card-block">
+						<h4 class="card-title">Reminders:</h4>
+						<ul>
+							<li>
+								<p class="card-text">
+									Only official staff will have the option to apply for leave.
+								</p>
+							</li>
+							
+							<li>
+								<p class="card-text">
+									The vacation leave balance due to offset and undertime will be automatically calculated upon updating the record.
+								</p>
+							</li>
+						</ul>
+					  </div>
+					</div>
             </div>
         </nav>
 
@@ -142,7 +162,6 @@
                                 <thead>
                                     <tr>
 										<th>Name</th>
-                                        <th>Year</th>
                                         <th>Remarks</th>
                                         <th>Approved by</th>
                                         <th>Start Date</th>
@@ -166,7 +185,7 @@
 									
                                     echo "<tr class='odd gradeX'>";
 									echo "<td>".$row2['0'].', '.$row2['1'].' '.$row2['2']."</td>";
-									echo "<td>". $row['year']."</td>";  
+									 
 									echo "<td>".$row['remarks']."</td>";  
 									echo "<td>".$row['approved_by']."</td>";  
 									echo "<td>".$row['start']."</td>"; 
