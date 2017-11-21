@@ -114,14 +114,9 @@
 				<strong>Whoops!</strong> It looks like this person has exceeded the maximum allowable sick leave days or the dates you have entered deduct to a value that exceeds the maximum allowable sick days.
 				</div>';
 			return 0;
-		}else if ((strtotime($startdate)-strtotime($leave_end2) < 0) || (strtotime($enddate)-strtotime($startdate) < 0) || (strtotime($enddate)-strtotime($leave_end2) < 0) ){
+		}else if ((strtotime($startdate)-strtotime($leave_end2) <= 0) || (strtotime($enddate)-strtotime($startdate) <= 0) || (strtotime($enddate)-strtotime($leave_end2) <= 0) ){
 			
-			echo "startdate: ".$startdate."<br>";
-			echo "enddate: ".$enddate."<br>";
-			echo "leave_end2: ".$leave_end2."<br>";
-			echo "startdate - leave_end2: ".strtotime($startdate)-strtotime($leave_end2)."<br>" ;
-			echo "enddate - startdate: ".strtotime($enddate)-strtotime($startdate)."<br>" ;
-			echo "enddate - leave_end2: ".strtotime($enddate)-strtotime($leave_end2)."<br>" ;
+			
 			
 			echo '<div class="alert alert-danger fade in">
 				<strong>Whoops!</strong> Invalid start/end date. Possible reasons may be: the end date precedes the start date or the start date and end date falls within the range of the last leave this person took.

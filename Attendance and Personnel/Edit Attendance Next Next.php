@@ -120,6 +120,22 @@
                       
                     </ul>
                 </div>
+				<br>
+				<div class="card" style="width: 20rem;">
+					
+					  <div class="card-block">
+						<h4 class="card-title">Reminders:</h4>
+						<ul>
+							<li>
+								<p class="card-text">
+									Ensure that the start date precedes the end date.
+								</p>
+							</li>
+							
+							
+						</ul>
+					  </div>
+					</div>
             </div>
         </nav>
 		

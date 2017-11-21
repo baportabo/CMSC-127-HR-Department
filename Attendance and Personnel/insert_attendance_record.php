@@ -58,7 +58,7 @@
 		}
 	}
 	
-	if (strtotime($end)-strtotime($start)<0){
+	if (strtotime($end)-strtotime($start)<=0){
 		$bool=0;
 	}else if ($bool==1){
 		
