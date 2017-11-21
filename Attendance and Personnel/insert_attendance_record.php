@@ -49,9 +49,18 @@
 	//initialize values into attendance counter 
 	$sql2 = "INSERT INTO attendance_counter (staff_id,year,sick_leave_balance,vac_leave_balance,vac_leave_ctr,sick_leave_ctr,undertime,offset,leave_start,leave_end) VALUES ('$staff_id','$year',15,15,0,0,0,0,'0000-00-00','0000-00-00')";
 	
+	$query = "SELECT year from attendance_record where staff_id = '$staff_id'";
+	$result = mysqli_query($con,$query);
+	
+	while ($row = mysqli_fetch_array($result)){ //make sure duplicate year does not exist for this staff member
+		if ($row['year']==$_POST['year']){
+			$bool=0;
+		}
+	}
+	
 	if (strtotime($end)-strtotime($start)<0){
 		$bool=0;
-	}else{
+	}else if ($bool==1){
 		
 		if (!mysqli_query($con,$sql1)){
 			$bool=0;
@@ -61,12 +70,17 @@
 		}
 	}
 	
+	
+	
 	if ($bool==1){
 		echo '<div class="alert alert-success">
 			<strong>Success!</strong> New entry successfully inserted into Attendance Record.
 			</div>';
 	}else{
-		echo 'Whoops! Something went wrong. Check the start/end date and ensure that a record for the same employee with the input year doesnt already exist.';
+		
+		echo '<div class="alert alert-danger fade in">
+				<strong>Whoops!</strong> Something went wrong. Check the start/end date and ensure that a record for the same employee with the input year doesnt already exist.;
+				</div>';
 	}
 	
 	header("refresh:2;url=Attendance.php");

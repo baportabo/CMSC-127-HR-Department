@@ -73,7 +73,9 @@
 			<strong>Success!</strong> New entry successfully inserted into Attendance Record/Counter.
 			</div>';
 	}else{
-		echo 'Whoops! Something went wrong. Check the start/end date and ensure that a record for the same employee with the input year doesnt already exist.';
+		echo '<div class="alert alert-danger fade in">
+				<strong>Whoops!</strong> Something went wrong. Check the start/end date.
+				</div>';
 	}
 	
 	

@@ -182,22 +182,32 @@
 											$query = "SELECT * FROM staff";
 											$result = mysqli_query($con,$query);
 											$dropdown="";
+											$cnt=0;
 											
 											while ($row = mysqli_fetch_array($result)){
 												$dropdown=$dropdown.'<option value="'.$row["last_name"].'  ">'.$row["last_name"].', '.$row["first_name"].'</option>';
-												
+												$cnt=$cnt+1;
 											}	
 										?>
                                         <div class="form-group">
                                             <label>List of Employees</label>
                                             <div class="form-group">                                            
-                                                <select class="form-control" id="last_name" name="last_name">
-                                                   <?php
-												   echo $dropdown; 
-												   ?>
-                                                </select>
+                                                
+                                              
+                                               
+												<?php 
+													if ($cnt!=0){
+														echo '<select class="form-control" id="last_name" name="last_name">';
+														echo $dropdown;
+														echo ' </select>';
+														echo '</div>';
+														echo '<button type="submit" class="btn btn-default">Next</button>';
+													}else{
+														 echo "<p> No employees currently exist in the database. Consider adding entries. </p>";
+													}
+												?>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Next</button>
+                                        
                                     </form>
                                 </div>
                                
