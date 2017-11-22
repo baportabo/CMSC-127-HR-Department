@@ -23,7 +23,7 @@ $links = array("Organizer","Activities","Personnel","Attendance");
                     <span class="icon-bar"></span>
                 </button>
 				 <!--<a class="navbar-brand" href="index.php">Luke's Foundation HR Department</a>-->
-                <a class="navbar-brand" href="../../">Luke&apos;s Foundation</a>
+                <a class="navbar-brand" href="../../">Luke Foundation Inc., Database</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
