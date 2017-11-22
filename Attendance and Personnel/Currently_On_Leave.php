@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Luke's Foundation HR Department</a>
+                <a class="navbar-brand" href="../../">Luke's Foundation HR Department</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
